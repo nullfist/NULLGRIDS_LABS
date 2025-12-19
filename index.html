@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NULLGRIDS Labs | Cyber Safety & Preparedness for Schools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --secondary: #047857;
+            --light: #fafbfc;
+            --gray: #6b7280;
+            --dark: #1f2937;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 8px;
+            --bg-subtle: #f9fafb;
+            --bg-soft: #f3f4f6;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        .logo-icon {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--bg-subtle) 0%, #f0f9ff 50%, var(--light) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 30px;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.35rem;
+            color: var(--gray);
+            max-width: 750px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+            color: var(--primary-dark);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: -0.025em;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+            line-height: 1.7;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 35px;
+            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            padding: 8px 0;
+            color: var(--gray);
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: linear-gradient(135deg, var(--bg-subtle) 0%, var(--bg-soft) 100%);
+            border-radius: 12px;
+            padding: 80px 60px;
+            margin: 60px 0;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+        }
+
+        .trust-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .trust-item {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .trust-item i {
+            font-size: 28px;
+            color: #ef4444;
+            margin-bottom: 16px;
+        }
+
+        .trust-item p {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        /* Benefits */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit {
+            text-align: center;
+            padding: 40px 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f1f5f9;
+            transition: transform 0.2s ease;
+        }
+
+        .benefit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--secondary);
+            font-size: 28px;
+        }
+
+        .benefit h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        /* Process */
+        .process {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 80px auto 0;
+            position: relative;
+            gap: 40px;
+        }
+
+        .process:before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--border);
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        /* Contact */
+        .contact-section {
+            background: linear-gradient(180deg, var(--light) 0%, var(--bg-subtle) 100%);
+            padding: 120px 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #111827 100%);
+            color: white;
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-disclaimer {
+            color: #cbd5e1;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .contact-container,
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .contact-form {
+                padding: 30px;
+            }
+            
+            .process {
+                flex-direction: column;
+                gap: 50px;
+            }
+            
+            .process:before {
+                display: none;
+            }
+            
+            .trust-section {
+                padding: 50px 30px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .cards {
+                gap: 25px;
+            }
+            
+            .card {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-shield-alt logo-icon"></i>
+                NULLGRIDS<span>Labs</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary">Schedule a Discussion</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Cyber Safety Awareness & Preparedness for Schools</h1>
+            <p>Helping schools build calm, confident cyber safety awareness for students and staff.</p>
+            <a href="#contact" class="btn">Request an Awareness Session</a>
+        </div>
+    </section>
+
+    <!-- Who We Are -->
+    <section class="container">
+        <h2 class="section-title">Who We Are</h2>
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.125rem; color: var(--gray); margin-bottom: 30px; line-height: 1.7;">
+                NULLGRIDS Labs is an education-focused cybersecurity initiative built to support schools in strengthening cyber safety awareness and preparedness.
+            </p>
+            <p style="font-size: 1.125rem; color: var(--gray); margin-bottom: 30px; line-height: 1.7;">
+                We believe schools don't need fear-driven security solutions. They need calm, clear processes, age-appropriate education, and documentation that helps staff respond responsibly when digital issues arise.
+            </p>
+            <p style="font-size: 1rem; color: var(--primary); font-weight: 600;">
+                Based in Tamil Nadu, India, serving CBSE, Matric, ICSE, and International schools.
+            </p>
+        </div>
+    </section>
+
+    <!-- The NULLGRIDS Approach -->
+    <section class="container">
+        <h2 class="section-title">The NULLGRIDS Approach</h2>
+        <p class="section-subtitle">Why schools across India choose our methodology</p>
+        
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-school"></i>
+                </div>
+                <h3>School-First Design</h3>
+                <p>Solutions built specifically for academic environments, not corporate security frameworks.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Education Over Surveillance</h3>
+                <p>We teach safe practices, we don't monitor students or install software on school systems.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3>Clear Documentation</h3>
+                <p>Ready-to-use policies, SOPs, and reporting templates designed for your staff.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Calm & Responsible</h3>
+                <p>Focus on practical awareness and confidence-building, not fear-based messaging.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Support Schools -->
+    <section class="container">
+        <h2 class="section-title">How We Support Schools</h2>
+        <p class="section-subtitle">Three comprehensive solutions designed for educational institutions</p>
+        
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Student Cyber Safety Awareness</h3>
+                <ul>
+                    <li>Age-appropriate workshops & sessions</li>
+                    <li>Real-world digital examples (social media, email, links)</li>
+                    <li>Clear do's and don'ts for students</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic; color: var(--primary); font-weight: 600;">Outcome: Confident, aware students</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3>Cyber Preparedness & Documentation</h3>
+                <ul>
+                    <li>Custom cyber safety policy creation</li>
+                    <li>Incident response SOPs for staff</li>
+                    <li>Reporting templates & compliance support</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic; color: var(--primary); font-weight: 600;">Outcome: Prepared, confident staff</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3>Educational Cyber Labs</h3>
+                <ul>
+                    <li>Simulation-based learning for students</li>
+                    <li>Safe, controlled educational environment</li>
+                    <li>No live systems or monitoring</li>
+                    <li>Purely educational and hands-on</li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic; color: var(--primary); font-weight: 600;">Outcome: Practical, experiential learning</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Cyber Preparedness Review</h3>
+                <ul>
+                    <li>Structured cyber preparedness review</li>
+                    <li>Gap identification & risk assessment</li>
+                    <li>Actionable recommendations report</li>
+                    <li style="font-size: 0.9rem; color: var(--gray);"><em>Powered by ThreatIntellAI</em></li>
+                </ul>
+                <p style="margin-top: 15px; font-style: italic; color: var(--primary); font-weight: 600;">Outcome: Clear roadmap for improvement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do NOT Do -->
+    <section class="container">
+        <div class="trust-section">
+            <h2 class="section-title">Our Clear Commitment to Your School</h2>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <i class="fas fa-user-slash"></i>
+                    <p>We do NOT monitor students</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-times-circle"></i>
+                    <p>We do NOT install software</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-lock"></i>
+                    <p>We do NOT access school systems</p>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-database"></i>
+                    <p>We do NOT collect personal student data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="container">
+        <h2 class="section-title">Our Team</h2>
+        <p class="section-subtitle">A focused team working on cyber safety awareness and preparedness for schools.</p>
+        
+        <div style="max-width: 1000px; margin: 0 auto; background: white; padding: 60px; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border);">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 50px;">
+                <div style="padding: 25px; border-left: 4px solid var(--primary); background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 8px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Founder</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Syed Raihaan</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Leads company vision, product direction, and school partnerships.</p>
+                </div>
+                <div style="padding: 25px; border-left: 4px solid var(--primary); background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 8px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Co-Founder & Technology Lead</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Sriraam</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Oversees technical systems, platform stability, and implementation.</p>
+                </div>
+                <div style="padding: 25px; border-left: 4px solid var(--primary); background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 8px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Co-Founder & Marketing</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Sowrav</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Leads marketing strategy, brand positioning, and market outreach.</p>
+                </div>
+                <div style="padding: 25px; border-left: 4px solid var(--primary); background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-radius: 8px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Co-Founder & Documentation</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Priyan</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Manages cyber safety policies, SOPs, and school-facing documentation.</p>
+                </div>
+                <div style="padding: 25px; border-left: 4px solid var(--secondary); background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-radius: 8px;">
+                    <h4 style="color: var(--secondary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Incident Response Labs</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Arumugapandi</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Designs educational incident response scenarios and learning content.</p>
+                </div>
+                <div style="padding: 25px; border-left: 4px solid var(--secondary); background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-radius: 8px;">
+                    <h4 style="color: var(--secondary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Outreach & Delivery Quality</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Harishakthi</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Supports school communication and ensures smooth session delivery.</p>
+                </div>
+                <div style="padding: 25px; border-left: 4px solid var(--secondary); background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-radius: 8px;">
+                    <h4 style="color: var(--secondary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Outreach & Coordination</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Santhakumar</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Assists with school outreach and engagement follow-ups.</p>
+                </div>
+                <div style="padding: 25px; border-left: 4px solid var(--secondary); background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-radius: 8px;">
+                    <h4 style="color: var(--secondary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Documentation Support</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Sashvini</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Supports policy documentation and educational content development.</p>
+                </div>
+                <div style="padding: 25px; border-left: 4px solid var(--secondary); background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border-radius: 8px;">
+                    <h4 style="color: var(--secondary); margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;">Frontend Developer</h4>
+                    <p style="color: var(--dark); font-weight: 600; margin-bottom: 6px; font-size: 1rem;">Yashwanth Kumar</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.6;">Develops user interfaces and educational platform experiences.</p>
+                </div>
+            </div>
+            <p style="color: var(--gray); font-size: 0.9rem; text-align: center; line-height: 1.6; font-style: italic;">
+                Our team works closely with schools to ensure all activities remain educational, non-intrusive, and aligned with academic environments.
+            </p>
+        </div>
+    </section>
+
+    <!-- Why Schools Work With Us -->
+    <section class="container">
+        <h2 class="section-title">Why Schools Choose NULLGRIDS Labs</h2>
+        <p class="section-subtitle">Trusted by educational institutions across India</p>
+        
+        <div class="benefits">
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <i class="fas fa-school"></i>
+                </div>
+                <h3>School-First Approach</h3>
+                <p>Designed specifically for the academic environment</p>
+            </div>
+            
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Calm & Responsible</h3>
+                <p>We focus on education, not fear</p>
+            </div>
+            
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3>Clear Documentation</h3>
+                <p>Ready-to-use policies and procedures for your staff</p>
+            </div>
+            
+            <div class="benefit">
+                <div class="benefit-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Simple Delivery</h3>
+                <p>Practical sessions and straightforward support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Engagement Works -->
+    <section class="container">
+        <h2 class="section-title">How Engagement Works</h2>
+        <p class="section-subtitle">A simple, three-step process tailored for schools</p>
+        
+        <div class="process">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Initial Discussion</h3>
+                <p>Understand your school's context and identify key areas of focus. No obligation, no pressure.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Awareness Session or Pilot</h3>
+                <p>Start with a focused student workshop or begin with documentation review. Low-commitment first step.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Ongoing Support</h3>
+                <p>Additional workshops if needed, documentation updates, and annual review options.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--dark);">Let's Discuss Your School's Needs</h2>
+            <p class="section-subtitle" style="color: var(--gray); margin-bottom: 40px;">
+                Schedule a discussion to learn how we can help your school
+            </p>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="school">School Name</label>
+                            <input type="text" id="school" name="school" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select id="role" name="role" required style="width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 1rem;">
+                                <option value="">Select your role</option>
+                                <option value="Principal">Principal</option>
+                                <option value="Vice Principal">Vice Principal</option>
+                                <option value="Academic Coordinator">Academic Coordinator</option>
+                                <option value="IT Coordinator">IT Coordinator</option>
+                                <option value="Administrator">Administrator</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Schedule a Discussion</button>
+                        
+                        <a href="https://wa.me/919363009180?text=Hi%20NULLGRIDS%20Labs,%20I'd%20like%20to%20discuss%20cyber%20safety%20awareness%20and%20preparedness%20for%20our%20school." class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Message us on WhatsApp
+                        </a>
+                    </form>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--dark);">Why Choose NULLGRIDS Labs?</h3>
+                    <ul style="list-style: none; margin-bottom: 30px;">
+                        <li style="padding: 10px 0; color: var(--dark);">
+                            <i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i>
+                            Focused exclusively on educational institutions
+                        </li>
+                        <li style="padding: 10px 0; color: var(--dark);">
+                            <i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i>
+                            No technical jargon, just clear guidance
+                        </li>
+                        <li style="padding: 10px 0; color: var(--dark);">
+                            <i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i>
+                            Respect for school protocols and student privacy
+                        </li>
+                        <li style="padding: 10px 0; color: var(--dark);">
+                            <i class="fas fa-check" style="color: var(--secondary); margin-right: 10px;"></i>
+                            Proven approach trusted by schools across India
+                        </li>
+                    </ul>
+                    
+                    <div style="background: white; padding: 25px; border-radius: var(--radius);">
+                        <h4 style="margin-bottom: 15px; color: var(--dark);">Ready to get started?</h4>
+                        <p style="color: var(--gray); margin-bottom: 20px;">
+                            Contact us today to schedule an initial discussion. We'll provide a customized proposal for your school's needs.
+                        </p>
+                        <p style="color: var(--gray);">
+                            <i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 8px;"></i>
+                            Based in Tamil Nadu, India
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="footer-logo">NULLGRIDS Labs</a>
+                    <p class="footer-disclaimer">
+                        NULLGRIDS Labs provides educational cyber safety awareness and preparedness services. We do not provide monitoring, surveillance, or live security services. All our methods are educational and documentation-focused.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 style="color: white; margin-bottom: 20px; font-size: 1.125rem;">Contact Information</h4>
+                    <p style="color: #cbd5e1; margin-bottom: 10px;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                        Tamil Nadu, India
+                    </p>
+                    <p style="color: #cbd5e1; margin-bottom: 10px;">
+                        <i class="fas fa-phone" style="margin-right: 10px;"></i>
+                        +91 9363009180
+                    </p>
+                    <p style="color: #cbd5e1;">
+                        <i class="fas fa-envelope" style="margin-right: 10px;"></i>
+                        contact@nullgridslabs.in
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 NULLGRIDS Labs. All rights reserved.</p>
+                <p>Education-Focused Cybersecurity • Designed for schools, trusted by educators</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const school = document.getElementById('school').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            // For now, just show confirmation - replace with actual form submission
+            alert(`Thank you ${name} from ${school}! We'll contact you at ${phone} or ${email} within 24 hours to schedule a discussion.`);
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
